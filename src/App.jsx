@@ -21,7 +21,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route index element={<HomePage cart={cart} loadCart={loadCart} />} />
-        <Route path="Checkout" element={<Checkout cart={cart} loadCart={loadCart} />} />
+        <Route path="checkout" element={<Checkout cart={cart} loadCart={loadCart} />} />
         {/*<Route path="orders" element={<Orders />} />
       <Route path="tracking" element={<Tracking />} />
       <Route path="*" element={<PageNotFound />} />*/}

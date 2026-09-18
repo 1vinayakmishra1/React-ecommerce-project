@@ -9,6 +9,11 @@ export default defineConfig({
     },
   })],
   server: {
+    strictPort: true,
+    watch: {
+      usePolling: true,
+      interval: 100,
+    },
     proxy: {
       '/api': {
         target: 'http://localhost:3000'

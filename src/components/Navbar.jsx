@@ -22,7 +22,7 @@ function Navbar({ cart }) {
         <div className="header-right">
           <button className="returns-btn">Returns<br /><span style={{ fontWeight: '700' }}>& Orders</span></button>
 
-          <NavLink to='/Checkout'>
+          <NavLink to='/checkout'>
           <button type="button" className="cart-btn">
             <div className="cart-items js-cart-items">{totalQuantity}</div>
 
