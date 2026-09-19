@@ -1,6 +1,7 @@
 import './CheckoutPage.css'
 import OrderSummary from './OrderSummary';
 import CheckoutHeader from './CheckoutHeader';
+import PaymentSummary from './PaymentSummary';
 
 function Checkout({ cart, loadCart }) {
   return (
@@ -8,6 +9,8 @@ function Checkout({ cart, loadCart }) {
       <CheckoutHeader cart={cart} />
 
       <OrderSummary cart={cart} loadCart={loadCart} />
+
+      <PaymentSummary />
     </>
   );
 }
