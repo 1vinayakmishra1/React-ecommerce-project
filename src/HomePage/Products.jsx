@@ -1,17 +1,30 @@
 import axios from "axios";
 import { useState } from "react";
 import money from "../utils/money"
+import CheckMarkIcon from "../assets/icons/checkmark.png"
 
-function Products({ product }) {
-  const [quantity, setQuantity] = useState(0);
+function Products({ product, loadCart }) {
+  const [quantity, setQuantity] = useState(1);
+  const [showAddedMessage, setShowAddedMessage] = useState(false);
 
   const addToCart = async () => {
-    await axios.post('/api/cart-items'), {
+    await axios.post('/api/cart-items', {
       productId: product.id,
-      quantity: quantity + 1
-    };
-    setQuantity(quantity);
+      quantity: quantity
+    });
+    await loadCart();
+    
+    setShowAddedMessage(true);
+
+    setTimeout(() => {
+      setShowAddedMessage(false);
+    },2000)
   }
+
+  const selectQuantity = (event) => {
+    const quantitySelected = Number(event.target.value)
+    setQuantity(quantitySelected);
+  };
 
   return (
     <>
@@ -35,7 +48,7 @@ function Products({ product }) {
         </div>
 
         <div className="dropdown">
-          <select name="numbers" id={product.id} className="js-product-quantity">
+          <select name="numbers" id={product.id} className="js-product-quantity" value={quantity} onChange={selectQuantity}>
             <option value="1">1</option>
             <option value="2">2</option>
             <option value="3">3</option>
@@ -47,6 +60,11 @@ function Products({ product }) {
             <option value="9">9</option>
             <option value="10">10</option>
           </select>
+        </div>
+
+        <div className="added-to-cart" style={{opacity: showAddedMessage ? 1 : 0}}>
+          <img src={CheckMarkIcon} alt="" />
+          Added
         </div>
 
         <button className="add-to-cart js-add-to-cart" data-product-id={product.id} onClick={addToCart}>

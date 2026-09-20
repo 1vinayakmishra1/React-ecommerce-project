@@ -13,7 +13,6 @@ function OrderSummary({ cart, loadCart }) {
     }
     fetchCheckoutDetails();
   }, [])
-  console.log(deliveryOptions);
 
   return (
     cart.map((cartItem) => (
