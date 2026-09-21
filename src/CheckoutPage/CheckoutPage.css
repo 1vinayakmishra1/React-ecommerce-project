@@ -226,6 +226,10 @@ body:has(.checkout-header) #root {
   border-color: rgb(242, 194, 0);
 }
 
+.checkout-quantity-input {
+  width: 50px;
+}
+
 @media (max-width: 767px) {
   body:has(.checkout-header) #root {
     grid-template-columns: 1fr;

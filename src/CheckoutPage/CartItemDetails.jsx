@@ -1,8 +1,39 @@
 import axios from "axios";
 import dayjs from "dayjs";
 import money from "../utils/money"
+import { useState } from "react";
 
 function CartItemDetails({ cartItem, deliveryOptions, loadCart }) {
+  const [isUpdatingQuantity, setIsUpdatingQuantity] = useState(false);
+  const [quantity, setQuantity] = useState(cartItem.quantity);
+
+  const updateCartItem = async () => {
+    if (isUpdatingQuantity) {
+      await axios.put(`/api/cart-items/${cartItem.productId}`, {
+        quantity
+      });
+      await loadCart();
+      setIsUpdatingQuantity(false);
+    } else {
+      setIsUpdatingQuantity(true);
+    }
+  }
+
+  const updateQuantityInput = (event) => {
+    const text = Number(event.target.value);
+    setQuantity(text);
+  }
+
+  const keyPress = (event) => {
+    if (event.key === 'Enter') {
+      updateCartItem();
+    } else if (event.key === 'Escape') {
+      setQuantity(cartItem.quantity);
+      setIsUpdatingQuantity(false);
+    }
+  }
+
+
   const deleteCartItem = async () => {
     await axios.delete(`/api/cart-items/${cartItem.productId}`);
     await loadCart();
@@ -18,14 +49,13 @@ function CartItemDetails({ cartItem, deliveryOptions, loadCart }) {
           <div className="product-name">{cartItem.product.name}</div>
           <div className="product-price">${(cartItem.product.priceCents / 100).toFixed(2)}</div>
           <div className="product-quantity">
-            Quantity: <span className="js-quantity-label-${cartItem.product.id}">{cartItem.quantity}</span>
+            Quantity: {
+              isUpdatingQuantity
+                ? <input type='text' className='checkout-quantity-input' value={quantity} onChange={updateQuantityInput} onKeyDown={keyPress} />
+                : <span className="js-quantity-label-${cartItem.product.id}">{cartItem.quantity}</span>
+            }
 
-            <span className="js-quantity-editing-container js-quantity-editing-container-${cartItem.product.id}">
-              <input className="new-quantity-input js-new-quantity-input-${cartItem.product.id}" type="number" min="1" value={cartItem.product.quantity} data-testid="new-quantity-input" />
-              <button className="save-btn js-save-btn" data-product-id="${cartItem.product.id}">Save</button>
-            </span>
-
-            <button className="update-btn js-update-btn" data-product-id="${cartItem.product.id}">Update</button>
+            <button onClick={updateCartItem} className="update-btn js-update-btn" data-product-id="${cartItem.product.id}">Update</button>
             <button onClick={deleteCartItem} className="delete-btn js-delete-btn" data-product-id="${cartItem.product.id}">Delete</button>
 
           </div>
