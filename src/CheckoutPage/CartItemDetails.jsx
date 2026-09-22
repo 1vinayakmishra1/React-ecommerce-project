@@ -38,9 +38,16 @@ function CartItemDetails({ cartItem, deliveryOptions, loadCart }) {
     await axios.delete(`/api/cart-items/${cartItem.productId}`);
     await loadCart();
   }
+
+  const defaultDeliveryOption = deliveryOptions.find((deliveryOption) => {
+    return deliveryOption.id === cartItem.deliveryOptionId
+  });
+
+    const [selectedDeliveryDate, setSelectedDeliveryDate] = useState(defaultDeliveryOption?.estimatedDeliveryTimeMs);
+  
   return (
     <>
-      <div className="delivery-date">Delivery Date: Monday, July 27</div>
+      <div className="delivery-date">Delivery Date: {dayjs(selectedDeliveryDate).format('dddd, MMMM D')}</div>
 
       <div className="cart-item-details-grid">
 
@@ -77,6 +84,7 @@ function CartItemDetails({ cartItem, deliveryOptions, loadCart }) {
                   await axios.put(`/api/cart-items/${cartItem.productId}`, {
                     deliveryOptionId: deliveryOption.id
                   });
+                  setSelectedDeliveryDate(deliveryOption.estimatedDeliveryTimeMs);
                   await loadCart();
                 }
 
