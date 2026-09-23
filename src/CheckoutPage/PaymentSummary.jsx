@@ -1,7 +1,18 @@
+import { useNavigate } from "react-router-dom";
 import money from "../utils/money";
-import { NavLink } from "react-router-dom";
+import axios from "axios";
 
-function PaymentSummary({ paymentSummary }) {
+
+function PaymentSummary({ paymentSummary, loadCart }) {
+  const navigate = useNavigate();
+
+  const CreateOrder = async() => {
+    await axios.post('/api/orders');
+    await loadCart();
+    navigate('/orders')
+  }
+  
+
   return (
     <div className="payment-summary">
       <div className="js-payment-info">
@@ -35,11 +46,10 @@ function PaymentSummary({ paymentSummary }) {
           <div className="payment-summary-money js-order-total">${money(paymentSummary.totalCostCents)}</div>
         </div>
 
-        <NavLink to='/orders' >
-        <button className="place-order-button button-primary js-place-order-button">
+        <button className="place-order-button button-primary js-place-order-button" onClick={CreateOrder}>
           Place your order
         </button>
-        </NavLink>
+
       </div>
     </div>
   );

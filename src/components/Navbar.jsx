@@ -9,9 +9,11 @@ function Navbar({ cart }) {
   return (
     <>
       <div className="header">
-        <div className="header-left">
-          <img src="src/assets/images/amazon-logo-white.png" alt="" className="logo-img" />
-        </div>
+        <NavLink to='/'>
+          <div className="header-left">
+            <img src="src/assets/images/amazon-logo-white.png" alt="" className="logo-img" />
+          </div>
+        </NavLink>
 
         <div className="header-center">
           <input type="text" placeholder="Search" className="input-bar js-input-bar" />
@@ -20,20 +22,22 @@ function Navbar({ cart }) {
         </div>
 
         <div className="header-right">
-          <button className="returns-btn">Returns<br /><span style={{ fontWeight: '700' }}>& Orders</span></button>
+          <NavLink to='/orders'>
+            <button className="returns-btn">Returns<br /><span style={{ fontWeight: '700' }}>& Orders</span></button>
+          </NavLink>
 
           <NavLink to='/checkout'>
-          <button type="button" className="cart-btn">
-            <div className="cart-items js-cart-items">{totalQuantity}</div>
+            <button type="button" className="cart-btn">
+              <div className="cart-items js-cart-items">{totalQuantity}</div>
 
-            <div className="cart-icon">
-              <img src="src/assets/icons/cart-icon.png" alt="" className="cart-btn-img" />
-            </div>
+              <div className="cart-icon">
+                <img src="src/assets/icons/cart-icon.png" alt="" className="cart-btn-img" />
+              </div>
 
-            <div className="cart-text">
-              Cart
-            </div>
-          </button>
+              <div className="cart-text">
+                Cart
+              </div>
+            </button>
           </NavLink>
 
         </div>

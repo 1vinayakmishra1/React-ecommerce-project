@@ -5,7 +5,7 @@ function OrdersGrid({ orders, loadCart }) {
 
   return (
     <>
-      {orders.length > 0 && orders.map((order) => {
+      {orders.length === 0 ? <div>No orders</div> : orders.map((order) => {
         return (
             <div key={order.id} className="order-container">
 
