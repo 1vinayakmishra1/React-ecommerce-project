@@ -1,4 +1,5 @@
 import money from "../utils/money";
+import { NavLink } from "react-router-dom";
 
 function PaymentSummary({ paymentSummary }) {
   return (
@@ -34,10 +35,11 @@ function PaymentSummary({ paymentSummary }) {
           <div className="payment-summary-money js-order-total">${money(paymentSummary.totalCostCents)}</div>
         </div>
 
+        <NavLink to='/orders' >
         <button className="place-order-button button-primary js-place-order-button">
           Place your order
         </button>
-
+        </NavLink>
       </div>
     </div>
   );
