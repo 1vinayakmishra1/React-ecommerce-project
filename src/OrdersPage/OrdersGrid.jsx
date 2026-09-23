@@ -1,5 +1,5 @@
 import OrderDetailsGrid from "./OrderDetailsGrid";
-
+import OrdersHeader from "./OrdersHeader";
 
 function OrdersGrid({ orders, loadCart }) {
 

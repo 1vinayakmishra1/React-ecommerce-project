@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-
+import './OrdersPage.css'
 import OrdersGrid from "./OrdersGrid";
 import Navbar from "../components/Navbar"
 
