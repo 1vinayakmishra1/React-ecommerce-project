@@ -119,6 +119,7 @@
 }
 
 .cart-icon {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -142,8 +143,8 @@
 
 .cart-items {
   position: absolute;
-  top: -2px;
-  right: 51px;
+  top: -4px;
+  right: 7px;
   color: #ff9900;
   font-size: 1rem;
   font-weight: 700;
@@ -224,8 +225,8 @@
   }
 
   .cart-items {
-    right: 24px;
-    top: 0px;
+    top: -4px;
+    right: 2px;
     font-size: 0.9rem;
   }
 

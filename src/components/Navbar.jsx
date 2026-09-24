@@ -31,9 +31,8 @@ function Navbar({ cart }) {
 
           <NavLink to='/checkout'>
             <button type="button" className="cart-btn">
-              <div className="cart-items js-cart-items">{totalQuantity}</div>
-
               <div className="cart-icon">
+                <div className="cart-items js-cart-items">{totalQuantity}</div>
                 <img src={cartIcon} alt="" className="cart-btn-img" />
               </div>
 
