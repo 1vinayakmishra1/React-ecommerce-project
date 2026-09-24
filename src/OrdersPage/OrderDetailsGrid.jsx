@@ -1,10 +1,11 @@
 import { Fragment } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import dayjs from "dayjs";
 import BuyAgainIcon from '../assets/icons/buy-again.png'
 
 function OrderDetailsGrid({ order, loadCart }) {
+  const navigate = useNavigate(`/tracking/${order.id}`);
   return (
     <div className="order-details-grid">
       {order.products.map((orderProduct) => {
@@ -40,7 +41,7 @@ function OrderDetailsGrid({ order, loadCart }) {
 
             <div className="product-actions">
               <Link to={`/tracking/${order.id}/${orderProduct.product.id}`}>
-                <button className="track-package-button button-secondary">
+                <button className="track-package-button button-secondary" onClick={navigate}>
                   Track package
                 </button>
               </Link>
