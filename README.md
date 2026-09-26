@@ -1,16 +1,57 @@
-# React + Vite
+# React E-Commerce App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A React storefront demo with product search, a shopping cart, checkout, order history, and delivery tracking. The frontend is built with Vite; an Express API and SQLite database provide the application data.
 
-Currently, two official plugins are available:
+## Requirements
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- Node.js 22 or newer
+- npm
 
-## React Compiler
+## Run locally
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Install and start the backend in one terminal:
 
-## Expanding the ESLint configuration
+```sh
+cd ecommerce-backend
+npm install
+npm run dev
+```
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+In a second terminal, install and start the frontend from the repository root:
+
+```sh
+npm install
+npm run dev
+```
+
+Open the local URL printed by Vite (usually `http://localhost:5173`). The frontend proxies API and image requests to the backend on port 3000. The backend creates and seeds its local SQLite database on first startup.
+
+## Available scripts
+
+At the repository root:
+
+| Command | Description |
+| --- | --- |
+| `npm run dev` | Start the Vite development server |
+| `npm run build` | Build the frontend for production |
+| `npm run preview` | Preview the production frontend build |
+| `npm run lint` | Run ESLint |
+
+In `ecommerce-backend/`:
+
+| Command | Description |
+| --- | --- |
+| `npm run dev` | Start the API with automatic restarts |
+| `npm start` | Start the API |
+
+The backend API endpoints are documented in [ecommerce-backend/documentation.md](ecommerce-backend/documentation.md).
+
+## Project structure
+
+- `src/` - React application pages, components, styles, and utilities
+- `ecommerce-backend/` - Express API, Sequelize models, seed data, and product assets
+
+## Notes
+
+This project is a learning/demo storefront and does not process real payments. Product data and order state are stored by the local backend.
+The frontend was built by VINAYAK MISHRA. The backend was developed with help from SuperSimpleDev's YouTube tutorials and AI.
